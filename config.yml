@@ -8,7 +8,7 @@ engines:
     silence_stderr: false                 # Suppresses stderr output.
     move_overhead_multiplier: 1.5         # Optimized for bullet games.
     uci_options:                          # Arbitrary UCI options passed to the engine.
-      Threads: 8                          # Increased threads for Threadripper power.
+      Threads: 4                          # Increased threads for Threadripper power.
       Hash: 4096                           # Increased hash for better position evaluation.
       Move Overhead: 250                  # Reduced for faster bullet moves.
     limits:                               # Limits that end the move calculation early.
@@ -22,7 +22,7 @@ engines:
     silence_stderr: false                 # Suppresses stderr output.
     move_overhead_multiplier: 1.5         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
     uci_options:                          # Arbitrary UCI options passed to the engine.
-      Threads: 8                          # Max CPU threads the engine can use.
+      Threads: 4                          # Max CPU threads the engine can use.
       Hash: 5192                           # Max memory (in megabytes) the engine can allocate.
       Move Overhead: 250                  # Increase if your bot flags games too often.
     limits:
@@ -31,12 +31,12 @@ engines:
       
   standard:                               # Engine used for standard chess and when no suitable special engine is configured.
     dir: "./engines"                      # Directory containing the engine.
-    name: "ShashChess39"                     # Binary name of the engine to use.
+    name: "sf"                           # Binary name of the engine to use.
     ponder: true                          # Think on opponent's time.
     silence_stderr: false                 # Suppresses stderr output.
     move_overhead_multiplier: 1.5         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
     uci_options:                          # Arbitrary UCI options passed to the engine.
-      Threads: 8                          # Maximum Threadripper power for longer games.
+      Threads: 4                          # Maximum Threadripper power for longer games.
       Hash: 8192                           # Massive hash for deep calculation.
       Move Overhead: 200                  # Increase if your bot flags games too often.
     limits:    
@@ -49,7 +49,7 @@ engines:
     silence_stderr: false                 # Suppresses stderr output.
     move_overhead_multiplier: 1.5         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
     uci_options:                          # Arbitrary UCI options passed to the engine.
-      Threads: 8                          # High thread count for variants.
+      Threads: 4                          # High thread count for variants.
       Hash: 4096                           # Large hash for variant calculations.
       Move Overhead: 250                  # Increase if your bot flags games too often.
       Use NNUE: true
@@ -291,7 +291,7 @@ resign:
 # min_rating: 2300                        # Minimum rating of opponent to resign.
 
 challenge:                                # Incoming challenges.
-  concurrency: 1                          # Number of games to play simultaneously.
+  concurrency: 2                          # Number of games to play simultaneously.
   max_takebacks: 3                        # Maximum number of takebacks granted to a human.
   bullet_with_increment_only: false       # Whether bullet games against BOTs should only be accepted with increment.
 # min_increment: 0                        # Minimum amount of increment to accept a challenge.
@@ -428,6 +428,7 @@ books:
   white_tournament_2: "./books/std/White_tournament_2.bin"
   black_tournament: "./books/std/black_tournament_1.bin"
   
+
 
 
 
