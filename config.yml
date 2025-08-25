@@ -6,11 +6,11 @@ engines:
     name: "sf"                     # Binary name of the engine to use.
     ponder: true                          # Think on opponent's time.
     silence_stderr: false                 # Suppresses stderr output.
-    move_overhead_multiplier: 3.0         # Optimized for bullet games.
+    move_overhead_multiplier: 9.5         # Optimized for bullet games.
     uci_options:                          # Arbitrary UCI options passed to the engine.
       Threads: 8                          # Increased threads for Threadripper power.
       Hash: 4000                           # Increased hash for better position evaluation.
-      Move Overhead: 200                  # Reduced for faster bullet moves.
+      Move Overhead: 150                  # Reduced for faster bullet moves.
     limits:                               # Limits that end the move calculation early.
       # time: 5.0
       # depth: 28                          # Maximum search depth for bullet.
@@ -409,7 +409,8 @@ books:
   owen_bullet: "./books/owen_bullet_240825_1315.bin"
   owen_blitz: "./books/owen_blitz_240825_1315.bin"
   owen_rapid: "./books/owen_rapid_240825_1315.bin"
-  chess960: "./books/c860/c960_250825_1935.bin"
+  chess960_1: "./books/book.bin"
+  chess960_2: "./books/c860/c960_250825_1935.bin"
   white_1: "./books/std/White_1.bin"
   white_2: "./books/std/White_2.bin"
   white_3: "./books/std/White_3.bin"
@@ -417,6 +418,7 @@ books:
   white_tournament_2: "./books/std/White_tournament_2.bin"
   black_tournament: "./books/std/black_tournament_1.bin"
   
+
 
 
 
