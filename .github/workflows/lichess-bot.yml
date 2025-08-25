@@ -42,17 +42,18 @@ jobs:
         cd Stockfish
         cd src
         make -j$(nproc) clean
-        make -j$(nproc) build ARCH=x86-64-bmi2 COMP=gcc
+        make -j$(nproc) profile-build
+        make strip || true
         cd ../..
-        cp Stockfish/src/stockfish engines/stockfish_x86-64-bmi2
-        if [ ! -f engines/stockfish_x86-64-bmi2 ]; then
+        cp Stockfish/src/stockfish engines/stockfish
+        if [ ! -f engines/stockfish ]; then
           echo "ERROR: stockfish binary not found"
           ls -lah Stockfish/src || true
           exit 1
         fi
-        rm -f engines/sf
-        mv engines/stockfish_x86-64-bmi2 engines/sf
-        chmod +x engines/sf
+        rm -f engines/sf || true
+        mv engines/stockfish engines/sf
+        chmod +x engines/sf || true
         
     - name: Setup engines permissions
       run: |
