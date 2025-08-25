@@ -308,7 +308,7 @@ challenge:                                # Incoming challenges.
     threeCheck:
       max: 500
   variants:                               # Chess variants to accept (https://lichess.org/variant).
-    # - standard
+    - standard
     - chess960
     - fromPosition
     - antichess
@@ -321,7 +321,7 @@ challenge:                                # Incoming challenges.
   time_controls:                          # Speeds or time controls in initial_minutes+increment_seconds format to accept.
     - bullet
     - blitz
-#     - rapid
+    # - rapid
 # #   - classical
 #     - 25+0
   bot_modes:                              # Game modes to accept against BOTs.
@@ -417,6 +417,7 @@ books:
   white_tournament_2: "./books/std/White_tournament_2.bin"
   black_tournament: "./books/std/black_tournament_1.bin"
   
+
 
 
 
