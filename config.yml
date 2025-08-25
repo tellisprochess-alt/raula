@@ -6,10 +6,10 @@ engines:
     name: "sf"                     # Binary name of the engine to use.
     ponder: true                          # Think on opponent's time.
     silence_stderr: false                 # Suppresses stderr output.
-    move_overhead_multiplier: 1.5         # Optimized for bullet games.
+    move_overhead_multiplier: 3.0         # Optimized for bullet games.
     uci_options:                          # Arbitrary UCI options passed to the engine.
       Threads: 8                          # Increased threads for Threadripper power.
-      Hash: 10000                           # Increased hash for better position evaluation.
+      Hash: 4000                           # Increased hash for better position evaluation.
       Move Overhead: 200                  # Reduced for faster bullet moves.
     limits:                               # Limits that end the move calculation early.
       # time: 5.0
@@ -20,10 +20,10 @@ engines:
     name: "sf"                     # Binary name of the engine to use.
     ponder: true                          # Think on opponent's time.
     silence_stderr: false                 # Suppresses stderr output.
-    move_overhead_multiplier: 1.4         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
+    move_overhead_multiplier: 3.5         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
     uci_options:                          # Arbitrary UCI options passed to the engine.
       Threads: 8                          # Max CPU threads the engine can use.
-      Hash: 10000                           # Max memory (in megabytes) the engine can allocate.
+      Hash: 5192                           # Max memory (in megabytes) the engine can allocate.
       Move Overhead: 200                  # Increase if your bot flags games too often.
     limits:
     
@@ -49,7 +49,7 @@ engines:
     uci_options:                          # Arbitrary UCI options passed to the engine.
       Threads: 8                          # High thread count for variants.
       Hash: 10000                           # Large hash for variant calculations.
-      Move Overhead: 100                  # Increase if your bot flags games too often.
+      Move Overhead: 120                  # Increase if your bot flags games too often.
       Use NNUE: true
       EvalFile: "3check-cb5f517c228b.nnue:antichess-dd3cbe53cd4e.nnue:atomic-2cf13ff256cc.nnue:crazyhouse-8ebf84784ad2.nnue:horde-28173ddccabe.nnue:kingofthehill-978b86d0e6a4.nnue:racingkings-636b95f085e3.nnue"
     limits:   # Limits that end the move calculation early.
@@ -417,6 +417,7 @@ books:
   white_tournament_2: "./books/std/White_tournament_2.bin"
   black_tournament: "./books/std/black_tournament_1.bin"
   
+
 
 
 
