@@ -8,7 +8,7 @@ engines:
     silence_stderr: false                 # Suppresses stderr output.
     move_overhead_multiplier: 9.5         # Optimized for bullet games.
     uci_options:                          # Arbitrary UCI options passed to the engine.
-      Threads: 32                          # Increased threads for Threadripper power.
+      Threads: 60                          # Increased threads for Threadripper power.
       Hash: 16000                           # Increased hash for better position evaluation.
       Move Overhead: 150                  # Reduced for faster bullet moves.
     limits:                               # Limits that end the move calculation early.
@@ -20,11 +20,11 @@ engines:
     name: "sf"                     # Binary name of the engine to use.
     ponder: true                          # Think on opponent's time.
     silence_stderr: false                 # Suppresses stderr output.
-    move_overhead_multiplier: 3.5         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
+    move_overhead_multiplier: 3.2         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
     uci_options:                          # Arbitrary UCI options passed to the engine.
-      Threads: 32                          # Max CPU threads the engine can use.
+      Threads: 60                          # Max CPU threads the engine can use.
       Hash: 16000                           # Max memory (in megabytes) the engine can allocate.
-      Move Overhead: 170                  # Increase if your bot flags games too often.
+      Move Overhead: 150                  # Increase if your bot flags games too often.
     limits:
       # time: 5.0
       # depth: 28    
@@ -49,7 +49,7 @@ engines:
     silence_stderr: false                 # Suppresses stderr output.
     move_overhead_multiplier: 1.5         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
     uci_options:                          # Arbitrary UCI options passed to the engine.
-      Threads: 32                          # High thread count for variants.
+      Threads: 60                          # High thread count for variants.
       Hash: 16000                           # Large hash for variant calculations.
       Move Overhead: 120                  # Increase if your bot flags games too often.
       Use NNUE: true
@@ -113,24 +113,24 @@ opening_books:
     #   names:
     #     - nimas
     bullet_white:                            # Other bullet games (1+0)
-      selection: weighted_random
-      max_depth: 20                    # Limit book depth so engine evaluates positions
+      selection: best_move
+      # max_depth: 20                    # Limit book depth so engine evaluates positions
       names:
         - white_1
         - white_3
     bullet_black:                            # Aggressive black bullet setup
       selection: best_move                # Always play strongest moves as black
-      max_depth: 15                    # Deeper book usage for black preparation
+      # max_depth: 15                    # Deeper book usage for black preparation
       names:
         - black_tournament
     3+0:                             # Blitz games (5+3)
-      selection: weighted_random
+      selection: best_move
       names:
         - white_1
         - white_2
         - white_3
     standard:                           
-      selection: weighted_random
+      selection: best_move
       names:
         - white_2
         - white_3
@@ -413,8 +413,6 @@ books:
   black3check: "./books/black3check.bin"
   small: "./books/small.bin"
   nimas: "./books/nimas.bin"
-  c960_2: "./books/c960_bullet_240825_2257.pgn.bin"
-  c960_3: "./books/c960_cl_240825_2257.pgn.bin"
   owen_bullet: "./books/owen_bullet_240825_1315.bin"
   owen_blitz: "./books/owen_blitz_240825_1315.bin"
   owen_rapid: "./books/owen_rapid_240825_1315.bin"
@@ -427,6 +425,7 @@ books:
   white_tournament_2: "./books/std/White_tournament_2.bin"
   black_tournament: "./books/std/black_tournament_1.bin"
   
+
 
 
 
