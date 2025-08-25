@@ -8,9 +8,9 @@ engines:
     silence_stderr: false                 # Suppresses stderr output.
     move_overhead_multiplier: 9.5         # Optimized for bullet games.
     uci_options:                          # Arbitrary UCI options passed to the engine.
-      Threads: 60                          # Increased threads for Threadripper power.
-      Hash: 16000                           # Increased hash for better position evaluation.
-      Move Overhead: 150                  # Reduced for faster bullet moves.
+      Threads: 2                          # Increased threads for Threadripper power.
+      Hash: 64                           # Increased hash for better position evaluation.
+      Move Overhead: 120                  # Reduced for faster bullet moves.
     limits:                               # Limits that end the move calculation early.
       # time: 5.0
       # depth: 28                          # Maximum search depth for bullet.
@@ -22,26 +22,26 @@ engines:
     silence_stderr: false                 # Suppresses stderr output.
     move_overhead_multiplier: 3.2         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
     uci_options:                          # Arbitrary UCI options passed to the engine.
-      Threads: 60                          # Max CPU threads the engine can use.
-      Hash: 16000                           # Max memory (in megabytes) the engine can allocate.
-      Move Overhead: 150                  # Increase if your bot flags games too often.
+      Threads: 2                          # Max CPU threads the engine can use.
+      Hash: 64                           # Max memory (in megabytes) the engine can allocate.
+      Move Overhead: 120                  # Increase if your bot flags games too often.
     limits:
       # time: 5.0
       # depth: 28    
       
-  # standard:                               # Engine used for standard chess and when no suitable special engine is configured.
-  #   dir: "./engines"                      # Directory containing the engine.
-  #   name: "ShashChess39"                     # Binary name of the engine to use.
-  #   ponder: true                          # Think on opponent's time.
-  #   silence_stderr: false                 # Suppresses stderr output.
-  #   move_overhead_multiplier: 1.0         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
-  #   uci_options:                          # Arbitrary UCI options passed to the engine.
-  #     Threads: 8                          # Maximum Threadripper power for longer games.
-  #     Hash: 10000                           # Massive hash for deep calculation.
-  #     Move Overhead: 100                  # Increase if your bot flags games too often.
-  #   limits:    
-  # #    depth: 35                           # Deep search for standard games.
-  # #    nodes: 8000000                      # High node count for thorough analysis.
+  standard:                               # Engine used for standard chess and when no suitable special engine is configured.
+    dir: "./engines"                      # Directory containing the engine.
+    name: "ShashChess39"                     # Binary name of the engine to use.
+    ponder: true                          # Think on opponent's time.
+    silence_stderr: false                 # Suppresses stderr output.
+    move_overhead_multiplier: 1.0         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
+    uci_options:                          # Arbitrary UCI options passed to the engine.
+      Threads: 8                          # Maximum Threadripper power for longer games.
+      Hash: 8192                           # Massive hash for deep calculation.
+      Move Overhead: 200                  # Increase if your bot flags games too often.
+    limits:    
+     depth: 35                           # Deep search for standard games.
+  #    nodes: 8000000                      # High node count for thorough analysis.
   variants:                               # Engine used for variants when no suitable special engine is configured.
     dir: "./engines"                      # Directory containing the engine.
     name: "fairy-stockfish_x86-64-bmi2"           # Binary name of the engine to use. (You need to download Fairy-Stockfish and place it in the engines directory)
@@ -49,8 +49,8 @@ engines:
     silence_stderr: false                 # Suppresses stderr output.
     move_overhead_multiplier: 1.5         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
     uci_options:                          # Arbitrary UCI options passed to the engine.
-      Threads: 60                          # High thread count for variants.
-      Hash: 16000                           # Large hash for variant calculations.
+      Threads: 8                          # High thread count for variants.
+      Hash: 4192                           # Large hash for variant calculations.
       Move Overhead: 120                  # Increase if your bot flags games too often.
       Use NNUE: true
       EvalFile: "3check-cb5f517c228b.nnue:antichess-dd3cbe53cd4e.nnue:atomic-2cf13ff256cc.nnue:crazyhouse-8ebf84784ad2.nnue:horde-28173ddccabe.nnue:kingofthehill-978b86d0e6a4.nnue:racingkings-636b95f085e3.nnue"
@@ -318,7 +318,7 @@ challenge:                                # Incoming challenges.
       max: 500
   variants:                               # Chess variants to accept (https://lichess.org/variant).
     - standard
-    # - chess960
+    - chess960
     - fromPosition
     - antichess
     - atomic
@@ -425,6 +425,7 @@ books:
   white_tournament_2: "./books/std/White_tournament_2.bin"
   black_tournament: "./books/std/black_tournament_1.bin"
   
+
 
 
 
