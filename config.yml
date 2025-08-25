@@ -415,9 +415,9 @@ books:
   black3check: "./books/black3check.bin"
   small: "./books/small.bin"
   nimas: "./books/nimas.bin"
-  owen_bullet: "./books/owen_bullet_240825_1315.bin"
-  owen_blitz: "./books/owen_blitz_240825_1315.bin"
-  owen_rapid: "./books/owen_rapid_240825_1315.bin"
+  owen_bullet: "./books/owen/owen_blitz_240825_1315.bin"
+  owen_blitz: "./books/owen/owen_blitz_240825_1315.bin"
+  owen_rapid: "./books/owen/owen_blitz_240825_1315.bin"
   chess960_1: "./books/book.bin"
   chess960_2: "./books/c860/c960_250825_1935.bin"
   white_1: "./books/std/White_1.bin"
@@ -427,6 +427,7 @@ books:
   white_tournament_2: "./books/std/White_tournament_2.bin"
   black_tournament: "./books/std/black_tournament_1.bin"
   
+
 
 
 
