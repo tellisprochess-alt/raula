@@ -335,10 +335,10 @@ challenge:                                # Incoming challenges.
 #     - 25+0
   bot_modes:                              # Game modes to accept against BOTs.
     - casual                              # Unrated games (accept casual games even if they don't meet min rating diff)
-    - rated                               # Rated games
+    # - rated                               # Rated games
   human_modes:                            # Game modes to accept against humans.
     - casual                              # Unrated games.
-    - rated                               # Rated games
+    # - rated                               # Rated games
 
 matchmaking:
   delay: 30                               # Time in seconds the bot must be idle before a new challenge is started.
@@ -425,6 +425,7 @@ books:
   white_tournament_2: "./books/std/White_tournament_2.bin"
   black_tournament: "./books/std/black_tournament_1.bin"
   
+
 
 
 
