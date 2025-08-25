@@ -399,12 +399,13 @@ jobs:
         
     - name: Setup engines permissions
       run: |
-        if [ -f "engines/fairy-stockfish" ]; then
-          chmod +x engines/fsf
-        fi
-        if [ -f "engines/ShashChess39" ]; then
-          chmod +x engines/ShashChess39
-        fi
+        echo "🔧 Setting engine permissions..."
+        chmod +x engines/fairy-stockfish_x86-64-bmi2
+        chmod +x engines/ShashChess39
+        
+        # Verify engines
+        echo "📋 Listing engines:"
+        ls -la engines/
 
     - name: Setup token
       run: |
