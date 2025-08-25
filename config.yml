@@ -99,32 +99,34 @@ opening_books:
 #     selection: best_move                # Move selection is one of "weighted_random", "uniform_random" or "best_move".
 #     names:                              # List of names of books to use as black.
 #       - BlackBook
-    0.5+0:                          # 30 sec bullet games (0.5+0)
-      selection: best_move
-      max_depth: 20                    # Limit book depth so engine evaluates positions
-      names:
-        - nimas
+    # 0.5+0:                          # 30 sec bullet games (0.5+0)
+    #   selection: best_move
+    #   max_depth: 20                    # Limit book depth so engine evaluates positions
+    #   names:
+    #     - nimas
     bullet_white:                            # Other bullet games (1+0)
       selection: weighted_random
       max_depth: 20                    # Limit book depth so engine evaluates positions
       names:
-        - small
-        - probook
+        - white_1
+        - white_3
     bullet_black:                            # Aggressive black bullet setup
       selection: best_move                # Always play strongest moves as black
       max_depth: 15                    # Deeper book usage for black preparation
       names:
-        - small
-        - probook
+        - black_tournament
     3+0:                             # Blitz games (5+3)
       selection: weighted_random
       names:
-        - small
-        - probook
+        - white_1
+        - white_2
+        - white_3
     standard:                           
       selection: weighted_random
       names:
-        - small
+        - white_2
+        - white_3
+        - white_1
     antichess_white:
       selection: best_move
       names:
@@ -415,6 +417,7 @@ books:
   white_tournament_2: "./books/std/White_tournament_2.bin"
   black_tournament: "./books/std/black_tournament_1.bin"
   
+
 
 
 
