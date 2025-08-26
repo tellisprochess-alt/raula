@@ -39,23 +39,23 @@ jobs:
         pip install -r requirements.txt
         pip install tenacity  # Adding missing dependency
         
-    - name: Download latest Stockfish dev
+    - name: Build Omega (Stockfish) — use actions/checkout copy
       run: |
         set -euo pipefail
         mkdir -p engines
         sudo apt-get update
         sudo apt-get install -y build-essential git
+        
         echo "Listing repo root:"
         ls -la || true
-        echo "Listing Omega directory:"
-        ls -la Omega || true
+        
         if [ ! -d Omega/src ]; then
-          echo "ERROR: Omega/src not found — checkout may have failed."
+          echo "ERROR: Omega/src not found (checkout failed)."
           ls -lah Omega || true
           exit 1
         fi
+        
         cd Omega/src
-        echo "Trying to build (cwd=$(pwd))..."
         if make -n profile-build >/dev/null 2>&1; then
           make -j$(nproc) clean || true
           make -j$(nproc) profile-build
@@ -65,14 +65,14 @@ jobs:
         fi
         make strip || true
         cd ../..
-        echo "Searching for built stockfish binaries..."
-        found=$(find Omega/src -maxdepth 3 -type f -executable -iname 'stockfish*' -print -quit || true)
+        
+        found=$(find Omega/src -maxdepth 4 -type f -executable -iname 'stockfish*' -print -quit || true)
         if [ -z "$found" ]; then
           echo "ERROR: No stockfish binary found under Omega/src."
-          echo "Listing Omega/src:"
           ls -la Omega/src || true
           exit 1
         fi
+        
         echo "Found stockfish binary: $found"
         cp "$found" engines/stockfish
         mv -f engines/stockfish engines/sf || true
