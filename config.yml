@@ -11,6 +11,8 @@ engines:
       Threads: 4                          # Increased threads for Threadripper power.
       Hash: 4096                           # Increased hash for better position evaluation.
       Move Overhead: 250                  # Reduced for faster bullet moves.
+      Minimum Thinking: 0
+      Slow Mover: 20
     limits:                               # Limits that end the move calculation early.
       # time: 5.0
       # depth: 28                          # Maximum search depth for bullet.
@@ -25,6 +27,8 @@ engines:
       Threads: 4                          # Max CPU threads the engine can use.
       Hash: 5192                           # Max memory (in megabytes) the engine can allocate.
       Move Overhead: 250                  # Increase if your bot flags games too often.
+      Minimum Thinking: 0
+      Slow Mover: 20
     limits:
       # time: 5.0
       # depth: 28    
@@ -38,7 +42,9 @@ engines:
     uci_options:                          # Arbitrary UCI options passed to the engine.
       Threads: 4                          # Maximum Threadripper power for longer games.
       Hash: 8192                           # Massive hash for deep calculation.
-      Move Overhead: 200                  # Increase if your bot flags games too often.
+      Move Overhead: 250                  # Increase if your bot flags games too often.
+      Minimum Thinking: 50
+      Slow Mover: 200
     limits:    
      depth: 35                           # Deep search for standard games.
   #    nodes: 8000000                      # High node count for thorough analysis.
@@ -435,6 +441,7 @@ books:
   white_tournament_2: "./books/std/White_tournament_2.bin"
   black_tournament: "./books/std/black_tournament_1.bin"
   
+
 
 
 
