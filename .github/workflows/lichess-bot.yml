@@ -20,13 +20,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v5
       
-    - name: Checkout Omega (private)
-      uses: actions/checkout@v5
-      with:
-        repository: FayE75/Omega
-        token: ${{ secrets.OMEGA_PAT }}
-        path: Omega
-    
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -46,8 +39,8 @@ jobs:
         git clone https://x-access-token:${{ secrets.OMEGA_PAT }}@github.com/FayE75/Omega.git Omega
 
         mkdir -p engines
-        sudo apt-get update
-        sudo apt-get install -y build-essential git cmake nasm pkg-config python3
+        sudo apt-get update -qq
+        sudo apt-get install -y g++ make git
 
         echo "Listing repo root:"
         ls -la || true
@@ -65,7 +58,7 @@ jobs:
 
         make clean || true
 
-        make -j$(nproc) profile-build | tee build.log || (
+        make -j$(nproc) profile-build ARCH=x86-64-bmi2 | tee build.log || (
           echo "===== BUILD FAILED - showing last 200 lines of build.log ====="
           tail -n 200 build.log || true
           echo "=============================================================="
