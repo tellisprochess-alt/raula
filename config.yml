@@ -110,16 +110,16 @@ opening_books:
       selection: best_move
       # max_depth: 20                    # Limit book depth so engine evaluates positions
       names:
-        # - white_1
-        # - white_3
-        - owen_bullet
+        - white_1
+        - white_3
+        # - owen_bullet
     bullet_black:                            # Other bullet games (1+0)
       selection: best_move
       # max_depth: 20                    # Limit book depth so engine evaluates positions
       names:
-        # - white_1
-        # - white_3
-        - owen_bullet
+        - white_2
+        - white_3
+        # - owen_bullet
     0.5+0:                             
       selection: best_move
       names:
@@ -139,9 +139,9 @@ opening_books:
       selection: best_move
       names:
         # - white_1
-        - white_2
+        # - white_2
         # - white_3
-        # - owen_bullet
+        - owen_bullet
     standard_white:                           
       selection: best_move
       names:
@@ -442,6 +442,7 @@ books:
   white_tournament_2: "./books/std/White_tournament_2.bin"
   black_tournament: "./books/std/black_tournament_1.bin"
   
+
 
 
 
