@@ -45,21 +45,39 @@ jobs:
         mkdir -p engines
         sudo apt-get update
         sudo apt-get install -y build-essential git
-        git clone https://x-access-token:${{ secrets.OMEGA_PAT }}@github.com/FayE75/Omega.git Omega
-        cd Omega/src
-        make -j$(nproc) clean
-        make -j$(nproc) profile-build
-        make strip || true
-        cd ../..
-        cp Omega/src/stockfish engines/stockfish
-        if [ ! -f engines/stockfish ]; then
-          echo "ERROR: stockfish binary not found"
-          ls -lah Stockfish/src || true
+        echo "Listing repo root:"
+        ls -la || true
+        echo "Listing Omega directory:"
+        ls -la Omega || true
+        if [ ! -d Omega/src ]; then
+          echo "ERROR: Omega/src not found — checkout may have failed."
+          ls -lah Omega || true
           exit 1
         fi
-        rm -f engines/sf || true
-        mv engines/stockfish engines/sf
+        cd Omega/src
+        echo "Trying to build (cwd=$(pwd))..."
+        if make -n profile-build >/dev/null 2>&1; then
+          make -j$(nproc) clean || true
+          make -j$(nproc) profile-build
+        else
+          make -j$(nproc) clean || true
+          make -j$(nproc)
+        fi
+        make strip || true
+        cd ../..
+        echo "Searching for built stockfish binaries..."
+        found=$(find Omega/src -maxdepth 3 -type f -executable -iname 'stockfish*' -print -quit || true)
+        if [ -z "$found" ]; then
+          echo "ERROR: No stockfish binary found under Omega/src."
+          echo "Listing Omega/src:"
+          ls -la Omega/src || true
+          exit 1
+        fi
+        echo "Found stockfish binary: $found"
+        cp "$found" engines/stockfish
+        mv -f engines/stockfish engines/sf || true
         chmod +x engines/sf || true
+        echo "Copied binary to engines/sf"
         
     - name: Setup engines permissions
       run: |
