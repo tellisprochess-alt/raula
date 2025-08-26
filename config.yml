@@ -99,20 +99,6 @@ opening_books:
   priority: 400                           # Priority with which this move source is used. Higher priority is used first.
   read_learn: false                       # Whether to read the learn values from the books.
   books:
-#   bullet:
-#     selection: weighted_random          # Move selection is one of "weighted_random", "uniform_random" or "best_move".
-#     names:                              # List of names of books to use in bullet.
-#       - BulletBook
-#       - DefaultBook
-#   standard_black:
-#     selection: best_move                # Move selection is one of "weighted_random", "uniform_random" or "best_move".
-#     names:                              # List of names of books to use as black.
-#       - BlackBook
-    # 0.5+0:                          # 30 sec bullet games (0.5+0)
-    #   selection: best_move
-    #   max_depth: 20                    # Limit book depth so engine evaluates positions
-    #   names:
-    #     - nimas
     bullet_white:                            # Other bullet games (1+0)
       selection: best_move
       # max_depth: 20                    # Limit book depth so engine evaluates positions
@@ -120,24 +106,45 @@ opening_books:
         # - white_1
         # - white_3
         - owen_bullet
-    bullet_black:                            # Aggressive black bullet setup
-      selection: best_move                # Always play strongest moves as black
-      # max_depth: 15                    # Deeper book usage for black preparation
+    bullet_black:                            # Other bullet games (1+0)
+      selection: best_move
+      # max_depth: 20                    # Limit book depth so engine evaluates positions
       names:
-        - black_tournament
-    3+0:                             # Blitz games (5+3)
+        # - white_1
+        # - white_3
+        - owen_bullet
+    0.5+0:                             
+      selection: best_move
+      names:
+        - white_3
+    1+0:                            
+      selection: best_move
+      names:
+        - white_1
+    3+0:                             
       selection: best_move
       names:
         # - white_1
         # - white_2
         # - white_3
-        - owen_bullet
-    standard:                           
+        - owen_blitz
+    3+0:                             
+      selection: best_move
+      names:
+        # - white_1
+        - white_2
+        # - white_3
+        # - owen_bullet
+    standard_white:                           
       selection: best_move
       names:
         - white_2
         - white_3
         - white_1
+    standard_black:                           
+      selection: best_move
+      names:
+        - black_tournament
     antichess_white:
       selection: best_move
       names:
@@ -428,6 +435,7 @@ books:
   white_tournament_2: "./books/std/White_tournament_2.bin"
   black_tournament: "./books/std/black_tournament_1.bin"
   
+
 
 
 
