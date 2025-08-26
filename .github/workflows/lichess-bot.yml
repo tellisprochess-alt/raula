@@ -65,7 +65,7 @@ jobs:
 
         make clean || true
 
-        make -j1 profile-build ARCH=x86-64 2>&1 | tee build.log || (
+        make -j$(nproc) profile-build | tee build.log || (
           echo "===== BUILD FAILED - showing last 200 lines of build.log ====="
           tail -n 200 build.log || true
           echo "=============================================================="
