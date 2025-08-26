@@ -22,9 +22,9 @@ engines:
     name: "sf"                     # Binary name of the engine to use.
     ponder: true                          # Think on opponent's time.
     silence_stderr: false                 # Suppresses stderr output.
-    move_overhead_multiplier: 1.5         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
+    move_overhead_multiplier: 2.5         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
     uci_options:                          # Arbitrary UCI options passed to the engine.
-      Threads: 4                          # Max CPU threads the engine can use.
+      Threads: 8                          # Max CPU threads the engine can use.
       Hash: 5192                           # Max memory (in megabytes) the engine can allocate.
       Move Overhead: 250                  # Increase if your bot flags games too often.
       Minimum Thinking: 0
@@ -38,16 +38,16 @@ engines:
     name: "sf"                           # Binary name of the engine to use.
     ponder: true                          # Think on opponent's time.
     silence_stderr: false                 # Suppresses stderr output.
-    move_overhead_multiplier: 1.5         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
+    move_overhead_multiplier: 3.0         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
     uci_options:                          # Arbitrary UCI options passed to the engine.
-      Threads: 4                          # Maximum Threadripper power for longer games.
+      Threads: 8                          # Maximum Threadripper power for longer games.
       Hash: 8192                           # Massive hash for deep calculation.
       Move Overhead: 250                  # Increase if your bot flags games too often.
-      Minimum Thinking: 50
-      Slow Mover: 200
+      Minimum Thinking: 0
+      Slow Mover: 120
     limits:  
-      time: 5.0
-      depth: 35                           # Deep search for standard games.
+      # time: 5.0
+      # depth: 35                           # Deep search for standard games.
   #    nodes: 8000000                      # High node count for thorough analysis.
   variants:                               # Engine used for variants when no suitable special engine is configured.
     dir: "./engines"                      # Directory containing the engine.
@@ -56,7 +56,7 @@ engines:
     silence_stderr: false                 # Suppresses stderr output.
     move_overhead_multiplier: 1.5         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
     uci_options:                          # Arbitrary UCI options passed to the engine.
-      Threads: 4                          # High thread count for variants.
+      Threads: 8                          # High thread count for variants.
       Hash: 4096                           # Large hash for variant calculations.
       Move Overhead: 250                  # Increase if your bot flags games too often.
       Use NNUE: true
@@ -141,7 +141,7 @@ opening_books:
         # - white_1
         # - white_2
         # - white_3
-        - owen_bullet
+        - owen_blitz
     standard_white:                           
       selection: best_move
       names:
@@ -442,6 +442,7 @@ books:
   white_tournament_2: "./books/std/White_tournament_2.bin"
   black_tournament: "./books/std/black_tournament_1.bin"
   
+
 
 
 
