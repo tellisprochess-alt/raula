@@ -44,52 +44,52 @@ jobs:
         set -euo pipefail
         rm -rf Omega
         git clone https://x-access-token:${{ secrets.OMEGA_PAT }}@github.com/FayE75/Omega.git Omega
-    
+
         mkdir -p engines
         sudo apt-get update
         sudo apt-get install -y build-essential git cmake nasm pkg-config python3
-    
+
         echo "Listing repo root:"
         ls -la || true
         echo "Listing Omega directory:"
         ls -la Omega || true
-    
+
         if [ ! -d Omega/src ]; then
           echo "ERROR: Omega/src not found (checkout/clone mungkin gagal)."
           ls -lah Omega || true
           exit 1
         fi
-    
+
         cd Omega/src
         echo "PWD=$(pwd) — starting build..."
-    
+
         make clean || true
-    
-        make -j1 2>&1 | tee build.log || (
+
+        make -j1 profile-build ARCH=x86-64 2>&1 | tee build.log || (
           echo "===== BUILD FAILED - showing last 200 lines of build.log ====="
           tail -n 200 build.log || true
           echo "=============================================================="
           exit 1
         )
-  
-        make strip 2>&1 | tee -a build.log || true
-    
-        cd ../..
-    
-        found=$(find Omega/src -maxdepth 6 -type f -executable -iname 'stockfish*' -print -quit || true)
+
+        found=$(find . -maxdepth 6 -type f -executable -iname 'stockfish*' -print -quit || true)
+        echo "find result: '$found'"
         if [ -z "$found" ]; then
-          echo "ERROR: No stockfish binary found under Omega/src after build."
-          echo "Listing Omega/src:"
-          ls -la Omega/src || true
+          echo "ERROR: No stockfish binary found under $(pwd) after build."
+          echo "Listing $(pwd):"
+          ls -la || true
           echo "Show first 200 lines of build.log for debugging (if exists):"
-          [ -f Omega/src/build.log ] && tail -n 200 Omega/src/build.log || true
+          [ -f build.log ] && tail -n 200 build.log || true
           exit 1
         fi
-    
-        echo "Found stockfish binary: $found"
-        cp "$found" engines/stockfish
-        mv -f engines/stockfish engines/sf || true
-        chmod +x engines/sf || true
+
+        if command -v strip >/dev/null 2>&1; then
+          strip "$found" || true
+        fi
+
+        cp "$found" ../../engines/stockfish
+        mv -f ../../engines/stockfish ../../engines/sf || true
+        chmod +x ../../engines/sf || true
         echo "Copied binary to engines/sf"
         
     - name: Setup engines permissions
