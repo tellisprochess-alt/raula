@@ -19,6 +19,13 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v5
+      
+    - name: Checkout Omega (private)
+      uses: actions/checkout@v5
+      with:
+        repository: FayE75/Omega
+        token: ${{ secrets.OMEGA_PAT }}
+        path: Omega
     
     - name: Setup Python
       uses: actions/setup-python@v5
@@ -38,14 +45,13 @@ jobs:
         mkdir -p engines
         sudo apt-get update
         sudo apt-get install -y build-essential git
-        git clone https://github.com/FayE75/Omega.git
-        cd Stockfish
-        cd src
+        git clone https://x-access-token:${{ secrets.OMEGA_PAT }}@github.com/FayE75/Omega.git Omega
+        cd Omega/src
         make -j$(nproc) clean
         make -j$(nproc) profile-build
         make strip || true
         cd ../..
-        cp Stockfish/src/stockfish engines/stockfish
+        cp Omega/src/stockfish engines/stockfish
         if [ ! -f engines/stockfish ]; then
           echo "ERROR: stockfish binary not found"
           ls -lah Stockfish/src || true
