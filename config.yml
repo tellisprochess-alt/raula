@@ -37,13 +37,13 @@ engines:
     name: "sf"                           # Binary name of the engine to use.
     ponder: true                          # Think on opponent's time.
     silence_stderr: false                 # Suppresses stderr output.
-    move_overhead_multiplier: 2.5         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
+    move_overhead_multiplier: 5.5         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
     uci_options:                          # Arbitrary UCI options passed to the engine.
       Threads: 8                          # Maximum Threadripper power for longer games.
       Hash: 8192                           # Massive hash for deep calculation.
       Move Overhead: 250                  # Increase if your bot flags games too often.
       Minimum Thinking Time: 50
-      Slow Mover: 125
+      Slow Mover: 80
     limits:  
       # time: 5.0
       # depth: 35                           # Deep search for standard games.
@@ -155,18 +155,25 @@ opening_books:
         - white_2
         - white_3
         # - owen_rapid
+    blitz:                             
+      selection: best_move
+      names:
+        - white_3
+        - white_2
+        - white_1
+        # - owen_rapid
     standard_white:                           
       selection: best_move
       names:
         - white_2
         - white_3
         - white_1
-      max_depth: 4
+      # max_depth: 4
     standard_black:                           
       selection: best_move
       names:
         - black_tournament
-      max_depth: 4
+      # max_depth: 4
     standard_white_tournament:
       selection: best_move
       names:
@@ -467,6 +474,7 @@ books:
   white_tournament_2: "./books/std/White_tournament_2.bin"
   black_tournament: "./books/std/black_tournament_1.bin"
   
+
 
 
 
