@@ -25,10 +25,10 @@ engines:
     move_overhead_multiplier: 2.5         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
     uci_options:                          # Arbitrary UCI options passed to the engine.
       Threads: 8                          # Max CPU threads the engine can use.
-      Hash: 5192                           # Max memory (in megabytes) the engine can allocate.
+      Hash: 4096                           # Max memory (in megabytes) the engine can allocate.
       Move Overhead: 250                  # Increase if your bot flags games too often.
       Minimum Thinking: 0
-      Slow Mover: 20
+      Slow Mover: 50
     limits:
       # time: 5.0
       # depth: 28    
@@ -178,7 +178,12 @@ opening_books:
       selection: best_move
       names:
         - crazyhouse
-    chess960:
+    # chess960_white:
+    #   selection: best_move
+    #   names:
+    #     - chess960_1
+    #     - chess960_2
+    chess960_black:
       selection: best_move
       names:
         - chess960_1
@@ -440,6 +445,7 @@ books:
   white_tournament_2: "./books/std/White_tournament_2.bin"
   black_tournament: "./books/std/black_tournament_1.bin"
   
+
 
 
 
