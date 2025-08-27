@@ -123,40 +123,45 @@ opening_books:
   read_learn: false                       # Whether to read the learn values from the books.
   books:
     bullet_white:                            # Other bullet games (1+0)
-      selection: best_move
+      selection: weighted_random
       # max_depth: 20                    # Limit book depth so engine evaluates positions
       names:
-        - white_1
-        - white_3
+        - nimas
+        - probook
         # - owen_bullet
     bullet_black:                            # Other bullet games (1+0)
       selection: best_move
       # max_depth: 20                    # Limit book depth so engine evaluates positions
       names:
-        - white_2
         - white_3
         # - owen_bullet
     0.5+0_white:                             
-      selection: best_move
+      selection: weighted_random
       names:
-        - white_1
+        - nimas
+        - probook
     0.5+0_black:                             
       selection: best_move
       names:
         - white_2
-    1+0:                            
+    1+0_white:                            
+      selection: weighted_random
+      names:
+        - nimas
+        - probook
+    1+0_black:                            
       selection: best_move
       names:
-        - white_3
+        - white_1
     3+0:                             
-      selection: best_move
+      selection: weighted_random
       names:
         - white_1
         - white_2
         - white_3
         # - owen_rapid
     blitz:                             
-      selection: best_move
+      selection: weighted_random
       names:
         - white_3
         - white_2
@@ -165,20 +170,24 @@ opening_books:
     standard_white:                           
       selection: best_move
       names:
+        - white_1
         - white_2
         - white_3
-        - white_1
       # max_depth: 4
     standard_black:                           
       selection: best_move
       names:
-        - black_tournament
+        - white_2
       # max_depth: 4
     standard_white_tournament:
       selection: best_move
       names:
         - white_tournament_1
         - white_tournament_2
+    standard_black_tournament:
+      selection: best_move
+      names:
+        - black_tournament
     antichess_white:
       selection: best_move
       names:
@@ -474,6 +483,7 @@ books:
   white_tournament_2: "./books/std/White_tournament_2.bin"
   black_tournament: "./books/std/black_tournament_1.bin"
   
+
 
 
 
