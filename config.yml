@@ -6,13 +6,13 @@ engines:
     name: "sf"                     # Binary name of the engine to use.
     ponder: true                          # Think on opponent's time.
     silence_stderr: false                 # Suppresses stderr output.
-    move_overhead_multiplier: 1.5         # Optimized for bullet games.
+    move_overhead_multiplier: 2.5         # Optimized for bullet games.
     uci_options:                          # Arbitrary UCI options passed to the engine.
       Threads: 4                          # Increased threads for Threadripper power.
       Hash: 4096                           # Increased hash for better position evaluation.
       Move Overhead: 250                  # Reduced for faster bullet moves.
       Minimum Thinking Time: 0
-      Slow Mover: 20
+      Slow Mover: 30
     limits:                               # Limits that end the move calculation early.
       # time: 5.0
       # depth: 28                          # Maximum search depth for bullet.
@@ -136,14 +136,18 @@ opening_books:
         - white_2
         - white_3
         # - owen_bullet
-    0.5+0:                             
-      selection: best_move
-      names:
-        - white_3
-    1+0:                            
+    0.5+0_white:                             
       selection: best_move
       names:
         - white_1
+    0.5+0_black:                             
+      selection: best_move
+      names:
+        - white_2
+    1+0:                            
+      selection: best_move
+      names:
+        - white_3
     3+0:                             
       selection: best_move
       names:
@@ -463,6 +467,7 @@ books:
   white_tournament_2: "./books/std/White_tournament_2.bin"
   black_tournament: "./books/std/black_tournament_1.bin"
   
+
 
 
 
