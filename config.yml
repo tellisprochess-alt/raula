@@ -131,17 +131,10 @@ opening_books:
     3+0:                             
       selection: best_move
       names:
-        # - white_1
-        # - white_2
-        # - white_3
-        - owen_rapid
-    3+0:                             
-      selection: best_move
-      names:
-        # - white_1
-        # - white_2
-        # - white_3
-        - owen_rapid
+        - white_1
+        - white_2
+        - white_3
+        # - owen_rapid
     standard_white:                           
       selection: best_move
       names:
@@ -152,6 +145,11 @@ opening_books:
       selection: best_move
       names:
         - black_tournament
+    standard_white_tournament:
+      selection: best_move
+      names:
+        - white_tournament_1
+        - white_tournament_2
     antichess_white:
       selection: best_move
       names:
@@ -442,6 +440,7 @@ books:
   white_tournament_2: "./books/std/White_tournament_2.bin"
   black_tournament: "./books/std/black_tournament_1.bin"
   
+
 
 
 
