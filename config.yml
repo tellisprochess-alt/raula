@@ -11,7 +11,7 @@ engines:
       Threads: 4                          # Increased threads for Threadripper power.
       Hash: 4096                           # Increased hash for better position evaluation.
       Move Overhead: 250                  # Reduced for faster bullet moves.
-      Minimum Thinking: 0
+      Minimum Thinking Time: 0
       Slow Mover: 20
     limits:                               # Limits that end the move calculation early.
       # time: 5.0
@@ -27,13 +27,12 @@ engines:
       Threads: 8                          # Max CPU threads the engine can use.
       Hash: 4096                           # Max memory (in megabytes) the engine can allocate.
       Move Overhead: 250                  # Increase if your bot flags games too often.
-      Minimum Thinking: 0
+      Minimum Thinking Time: 0
       Slow Mover: 50
     limits:
       # time: 5.0
       # depth: 28    
-      
-  standard:                               # Engine used for standard chess and when no suitable special engine is configured.
+  blitz:                               # Engine used for standard chess and when no suitable special engine is configured.
     dir: "./engines"                      # Directory containing the engine.
     name: "sf"                           # Binary name of the engine to use.
     ponder: true                          # Think on opponent's time.
@@ -42,9 +41,26 @@ engines:
     uci_options:                          # Arbitrary UCI options passed to the engine.
       Threads: 8                          # Maximum Threadripper power for longer games.
       Hash: 8192                           # Massive hash for deep calculation.
-      Move Overhead: 180                  # Increase if your bot flags games too often.
-      Minimum Thinking: 0
-      Slow Mover: 110
+      Move Overhead: 250                  # Increase if your bot flags games too often.
+      Minimum Thinking Time: 50
+      Slow Mover: 125
+    limits:  
+      # time: 5.0
+      # depth: 35                           # Deep search for standard games.
+  #    nodes: 8000000                      # High node count for thorough analysis.
+      
+  standard:                               # Engine used for standard chess and when no suitable special engine is configured.
+    dir: "./engines"                      # Directory containing the engine.
+    name: "sf"                           # Binary name of the engine to use.
+    ponder: true                          # Think on opponent's time.
+    silence_stderr: false                 # Suppresses stderr output.
+    move_overhead_multiplier: 30.0         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
+    uci_options:                          # Arbitrary UCI options passed to the engine.
+      Threads: 8                          # Maximum Threadripper power for longer games.
+      Hash: 8192                           # Massive hash for deep calculation.
+      Move Overhead: 150                  # Increase if your bot flags games too often.
+      Minimum Thinking Time: 500
+      Slow Mover: 500
     limits:  
       # time: 5.0
       # depth: 35                           # Deep search for standard games.
@@ -141,10 +157,12 @@ opening_books:
         - white_2
         - white_3
         - white_1
+      max_depth: 4
     standard_black:                           
       selection: best_move
       names:
         - black_tournament
+      max_depth: 4
     standard_white_tournament:
       selection: best_move
       names:
@@ -445,6 +463,7 @@ books:
   white_tournament_2: "./books/std/White_tournament_2.bin"
   black_tournament: "./books/std/black_tournament_1.bin"
   
+
 
 
 
