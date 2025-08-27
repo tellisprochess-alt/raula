@@ -3,18 +3,16 @@ token: "XXXXXXXXXXXXXXXXXXX"         # Lichess OAuth2 Token.
 engines:
   bullet:                               # Engine used for standard chess and when no suitable special engine is configured.
     dir: "./engines"                      # Directory containing the engine.
-    name: "sf"                     # Binary name of the engine to use.
+    name: "stockfish"                     # Binary name of the engine to use.
     ponder: true                          # Think on opponent's time.
     silence_stderr: false                 # Suppresses stderr output.
-    move_overhead_multiplier: 2.5         # Optimized for bullet games.
+    move_overhead_multiplier: 24.0         # Optimized for bullet games.
     uci_options:                          # Arbitrary UCI options passed to the engine.
-      Threads: 4                          # Increased threads for Threadripper power.
-      Hash: 4096                           # Increased hash for better position evaluation.
-      Move Overhead: 250                  # Reduced for faster bullet moves.
-      Minimum Thinking Time: 0
-      Slow Mover: 30
+      Threads: 8                          # Increased threads for Threadripper power.
+      Hash: 12000                           # Increased hash for better position evaluation.
+      Move Overhead: 100
     limits:                               # Limits that end the move calculation early.
-      # time: 5.0
+        time: 5.0
       # depth: 28                          # Maximum search depth for bullet.
 
   chess960:                               # Engine used for standard chess and when no suitable special engine is configured.
@@ -22,13 +20,11 @@ engines:
     name: "sf"                     # Binary name of the engine to use.
     ponder: true                          # Think on opponent's time.
     silence_stderr: false                 # Suppresses stderr output.
-    move_overhead_multiplier: 2.5         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
+    move_overhead_multiplier: 24.0         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
     uci_options:                          # Arbitrary UCI options passed to the engine.
       Threads: 8                          # Max CPU threads the engine can use.
       Hash: 4096                           # Max memory (in megabytes) the engine can allocate.
-      Move Overhead: 250                  # Increase if your bot flags games too often.
-      Minimum Thinking Time: 0
-      Slow Mover: 50
+      Move Overhead: 100
     limits:
       # time: 5.0
       # depth: 28    
@@ -54,13 +50,11 @@ engines:
     name: "sf"                           # Binary name of the engine to use.
     ponder: true                          # Think on opponent's time.
     silence_stderr: false                 # Suppresses stderr output.
-    move_overhead_multiplier: 30.0         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
+    move_overhead_multiplier: 1.0         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
     uci_options:                          # Arbitrary UCI options passed to the engine.
       Threads: 8                          # Maximum Threadripper power for longer games.
       Hash: 8192                           # Massive hash for deep calculation.
-      Move Overhead: 150                  # Increase if your bot flags games too often.
-      Minimum Thinking Time: 500
-      Slow Mover: 500
+      Move Overhead: 100                  # Increase if your bot flags games too often.
     limits:  
       # time: 5.0
       # depth: 35                           # Deep search for standard games.
@@ -70,14 +64,13 @@ engines:
     name: "fairy-stockfish_x86-64-bmi2"           # Binary name of the engine to use. (You need to download Fairy-Stockfish and place it in the engines directory)
     ponder: true                          # Think on opponent's time.
     silence_stderr: false                 # Suppresses stderr output.
-    move_overhead_multiplier: 1.5         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
+    move_overhead_multiplier: 1.0         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
     uci_options:                          # Arbitrary UCI options passed to the engine.
       Threads: 8                          # High thread count for variants.
       Hash: 4096                           # Large hash for variant calculations.
-      Move Overhead: 250                  # Increase if your bot flags games too often.
+      Move Overhead: 100                  # Increase if your bot flags games too often.
       Use NNUE: true
       EvalFile: "3check-cb5f517c228b.nnue:antichess-dd3cbe53cd4e.nnue:atomic-2cf13ff256cc.nnue:crazyhouse-8ebf84784ad2.nnue:horde-28173ddccabe.nnue:kingofthehill-978b86d0e6a4.nnue:racingkings-636b95f085e3.nnue"
-      UCI_Elo: 2850
     limits:   # Limits that end the move calculation early.
   #    depth: 30                           # Deep variant search.
  #     nodes: 6000000                      # High node count for variants.
@@ -122,72 +115,35 @@ opening_books:
   priority: 400                           # Priority with which this move source is used. Higher priority is used first.
   read_learn: false                       # Whether to read the learn values from the books.
   books:
-    bullet_white:                            # Other bullet games (1+0)
-      selection: weighted_random
-      # max_depth: 20                    # Limit book depth so engine evaluates positions
-      names:
-        - nimas
-        - probook
-        # - owen_bullet
-    bullet_black:                            # Other bullet games (1+0)
-      selection: best_move
-      # max_depth: 20                    # Limit book depth so engine evaluates positions
-      names:
-        - white_3
-        # - owen_bullet
     0.5+0_white:                             
-      selection: weighted_random
+      selection: best_move
       names:
         - nimas
-        - probook
     0.5+0_black:                             
       selection: best_move
       names:
-        - white_2
-    1+0_white:                            
-      selection: weighted_random
-      names:
-        - nimas
         - probook
-    1+0_black:                            
-      selection: best_move
+    bullet_white:                            # Other bullet games (1+0)
+      selection: weighted_random
+      max_depth: 20                    # Limit book depth so engine evaluates positions
       names:
-        - white_1
-    3+0:                             
+        - small
+        - probook
+    bullet_black:                            # Aggressive black bullet setup
+      selection: best_move                # Always play strongest moves as black
+      max_depth: 15                    # Deeper book usage for black preparation
+      names:
+        - small
+        - probook
+    3+0:                             # Blitz games (5+3)
       selection: weighted_random
       names:
-        - white_1
-        - white_2
-        - white_3
-        # - owen_rapid
-    blitz:                             
+        - small
+        - probook
+    standard:                           
       selection: weighted_random
       names:
-        - white_3
-        - white_2
-        - white_1
-        # - owen_rapid
-    standard_white:                           
-      selection: best_move
-      names:
-        - white_1
-        - white_2
-        - white_3
-      # max_depth: 4
-    standard_black:                           
-      selection: best_move
-      names:
-        - white_2
-      # max_depth: 4
-    standard_white_tournament:
-      selection: best_move
-      names:
-        - white_tournament_1
-        - white_tournament_2
-    standard_black_tournament:
-      selection: best_move
-      names:
-        - black_tournament
+        - small
     antichess_white:
       selection: best_move
       names:
@@ -216,16 +172,10 @@ opening_books:
       selection: best_move
       names:
         - crazyhouse
-    # chess960_white:
-    #   selection: best_move
-    #   names:
-    #     - chess960_1
-    #     - chess960_2
-    chess960_black:
+    chess960:
       selection: best_move
       names:
-        - chess960_1
-        - chess960_2
+        - chess960
     atomic_black:
       selection: best_move
       names:
@@ -245,7 +195,7 @@ opening_books:
     3check_black:
       selection: best_move
       names:
-        - black3check    
+        - black3check   
     standard_human:
       selection: weighted_random
       random_selection: true  
@@ -483,6 +433,7 @@ books:
   white_tournament_2: "./books/std/White_tournament_2.bin"
   black_tournament: "./books/std/black_tournament_1.bin"
   
+
 
 
 
