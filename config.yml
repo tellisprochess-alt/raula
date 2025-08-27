@@ -332,7 +332,7 @@ challenge:                                # Incoming challenges.
     threeCheck:
       max: 500
   variants:                               # Chess variants to accept (https://lichess.org/variant).
-    # - standard
+    - standard
     - chess960
     - fromPosition
     - antichess
@@ -440,6 +440,7 @@ books:
   white_tournament_2: "./books/std/White_tournament_2.bin"
   black_tournament: "./books/std/black_tournament_1.bin"
   
+
 
 
 
